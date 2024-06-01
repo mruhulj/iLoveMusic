@@ -8,8 +8,8 @@ public:
 	String^ penyayi;
 	int id;
 	Playlist(String^ judul, String^ penyanyi, int id) {
-		judul = judul;
-		penyanyi = penyanyi;
-		id = id;
+		this->id = id;
+		this->judul = judul;
+		this->penyayi = penyanyi;
 	}
 };

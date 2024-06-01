@@ -164,20 +164,18 @@ namespace spotify {
 			{
 				line = line->Trim();
 				String^ temp = tb_username->Text->ToString() + " " + tb_password->Text->ToString();
-				//MessageBox::Show(line + "\n" + temp, "TEST", MessageBoxButtons::OK);
 
 				if (line == temp) {
-					MessageBox::Show("Berhasil Lgoin", "TEST", MessageBoxButtons::OK);
+				
 					PB_username = tb_username->Text->ToString();
 					login = true;
 					Close();
 					break;
 				}
-				else {
-					MessageBox::Show("Gagal Lgoin", "TEST", MessageBoxButtons::OK);
 
-				}
-
+			}
+			if (login == false) {
+				MessageBox::Show("Gagal Lgoin", "TEST", MessageBoxButtons::OK);
 			}
 			reader->Close();
 		}

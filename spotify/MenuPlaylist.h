@@ -1,6 +1,8 @@
 #pragma once
 #include "Playlist_Struct.h"
-#include "Log_Reg.h"
+//#include "Update_Lagu.h"
+//#include "Log_Reg.h"
+
 
 namespace spotify {
 
@@ -11,6 +13,7 @@ namespace spotify {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Summary for MenuPlaylist
@@ -40,21 +43,30 @@ namespace spotify {
 	private: System::Windows::Forms::Button^ btn_tambah;
 	private: System::Windows::Forms::Button^ btn_update;
 	private: System::Windows::Forms::Button^ btn_delete;
-	private: System::Windows::Forms::Button^ btn_sort;
+
+	private: System::Windows::Forms::TextBox^ tb_searching;
 	protected:
 
 	protected:
 
 
 
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
+
 	private: System::Windows::Forms::Button^ btn_shuffle;
 	private: System::Windows::Forms::Button^ btn_download;
+	private: System::Windows::Forms::Button^ btn_logout;
 
 
-	private: System::Windows::Forms::Button^ button7;
+
 	private: System::Windows::Forms::DataGridView^ Tabel_Playlist;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_judul;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_penyanyi;
+	private: System::Windows::Forms::Button^ btn_search;
+
+
+
 
 
 
@@ -62,7 +74,7 @@ namespace spotify {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -75,20 +87,22 @@ namespace spotify {
 			this->btn_tambah = (gcnew System::Windows::Forms::Button());
 			this->btn_update = (gcnew System::Windows::Forms::Button());
 			this->btn_delete = (gcnew System::Windows::Forms::Button());
-			this->btn_sort = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->tb_searching = (gcnew System::Windows::Forms::TextBox());
 			this->btn_shuffle = (gcnew System::Windows::Forms::Button());
 			this->btn_download = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->btn_logout = (gcnew System::Windows::Forms::Button());
 			this->Tabel_Playlist = (gcnew System::Windows::Forms::DataGridView());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->clm_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clm_judul = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clm_penyanyi = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->btn_search = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Tabel_Playlist))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btn_tambah
 			// 
-			this->btn_tambah->Location = System::Drawing::Point(12, 12);
+			this->btn_tambah->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_tambah.BackgroundImage")));
+			this->btn_tambah->Location = System::Drawing::Point(12, 58);
 			this->btn_tambah->Name = L"btn_tambah";
 			this->btn_tambah->Size = System::Drawing::Size(133, 30);
 			this->btn_tambah->TabIndex = 0;
@@ -98,7 +112,7 @@ namespace spotify {
 			// 
 			// btn_update
 			// 
-			this->btn_update->Location = System::Drawing::Point(12, 58);
+			this->btn_update->Location = System::Drawing::Point(12, 104);
 			this->btn_update->Name = L"btn_update";
 			this->btn_update->Size = System::Drawing::Size(133, 30);
 			this->btn_update->TabIndex = 1;
@@ -108,7 +122,7 @@ namespace spotify {
 			// 
 			// btn_delete
 			// 
-			this->btn_delete->Location = System::Drawing::Point(12, 105);
+			this->btn_delete->Location = System::Drawing::Point(12, 151);
 			this->btn_delete->Name = L"btn_delete";
 			this->btn_delete->Size = System::Drawing::Size(133, 30);
 			this->btn_delete->TabIndex = 2;
@@ -116,136 +130,251 @@ namespace spotify {
 			this->btn_delete->UseVisualStyleBackColor = true;
 			this->btn_delete->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_delete_Click);
 			// 
-			// btn_sort
+			// tb_searching
 			// 
-			this->btn_sort->Location = System::Drawing::Point(12, 153);
-			this->btn_sort->Name = L"btn_sort";
-			this->btn_sort->Size = System::Drawing::Size(133, 30);
-			this->btn_sort->TabIndex = 3;
-			this->btn_sort->Text = L"Urutkan Lagu";
-			this->btn_sort->UseVisualStyleBackColor = true;
-			// 
-			// textBox1
-			// 
-			this->textBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->tb_searching->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->textBox1->Location = System::Drawing::Point(234, 16);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(315, 22);
-			this->textBox1->TabIndex = 4;
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.BackgroundImage")));
-			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->pictureBox1->Location = System::Drawing::Point(199, 12);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(29, 28);
-			this->pictureBox1->TabIndex = 5;
-			this->pictureBox1->TabStop = false;
+			this->tb_searching->Location = System::Drawing::Point(234, 16);
+			this->tb_searching->Name = L"tb_searching";
+			this->tb_searching->Size = System::Drawing::Size(364, 22);
+			this->tb_searching->TabIndex = 4;
 			// 
 			// btn_shuffle
 			// 
-			this->btn_shuffle->Location = System::Drawing::Point(12, 207);
+			this->btn_shuffle->Location = System::Drawing::Point(12, 196);
 			this->btn_shuffle->Name = L"btn_shuffle";
 			this->btn_shuffle->Size = System::Drawing::Size(133, 30);
 			this->btn_shuffle->TabIndex = 6;
 			this->btn_shuffle->Text = L"Shuffle Lagu";
 			this->btn_shuffle->UseVisualStyleBackColor = true;
+			this->btn_shuffle->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_shuffle_Click);
 			// 
 			// btn_download
 			// 
-			this->btn_download->Location = System::Drawing::Point(12, 257);
+			this->btn_download->Location = System::Drawing::Point(12, 241);
 			this->btn_download->Name = L"btn_download";
 			this->btn_download->Size = System::Drawing::Size(133, 30);
 			this->btn_download->TabIndex = 7;
 			this->btn_download->Text = L"Download Playlist";
 			this->btn_download->UseVisualStyleBackColor = true;
+			this->btn_download->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_download_Click);
 			// 
-			// button7
+			// btn_logout
 			// 
-			this->button7->Location = System::Drawing::Point(12, 357);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(133, 30);
-			this->button7->TabIndex = 8;
-			this->button7->Text = L"Logout";
-			this->button7->UseVisualStyleBackColor = true;
+			this->btn_logout->Location = System::Drawing::Point(12, 357);
+			this->btn_logout->Name = L"btn_logout";
+			this->btn_logout->Size = System::Drawing::Size(133, 30);
+			this->btn_logout->TabIndex = 8;
+			this->btn_logout->Text = L"Logout";
+			this->btn_logout->UseVisualStyleBackColor = true;
+			this->btn_logout->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_logout_Click);
 			// 
 			// Tabel_Playlist
 			// 
+			this->Tabel_Playlist->AllowUserToAddRows = false;
+			this->Tabel_Playlist->AllowUserToDeleteRows = false;
+			this->Tabel_Playlist->AllowUserToOrderColumns = true;
 			this->Tabel_Playlist->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->Tabel_Playlist->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->Tabel_Playlist->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->clm_id,
+					this->clm_judul, this->clm_penyanyi
+			});
 			this->Tabel_Playlist->Location = System::Drawing::Point(234, 58);
 			this->Tabel_Playlist->Name = L"Tabel_Playlist";
+			this->Tabel_Playlist->ReadOnly = true;
 			this->Tabel_Playlist->RowHeadersWidth = 51;
 			this->Tabel_Playlist->RowTemplate->Height = 24;
-			this->Tabel_Playlist->Size = System::Drawing::Size(315, 247);
+			this->Tabel_Playlist->Size = System::Drawing::Size(406, 247);
 			this->Tabel_Playlist->TabIndex = 9;
+			this->Tabel_Playlist->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellContentClick);
 			this->Tabel_Playlist->CellMouseClick += gcnew System::Windows::Forms::DataGridViewCellMouseEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellMouseClick);
+			// 
+			// clm_id
+			// 
+			this->clm_id->HeaderText = L"ID";
+			this->clm_id->MinimumWidth = 6;
+			this->clm_id->Name = L"clm_id";
+			this->clm_id->ReadOnly = true;
+			this->clm_id->Width = 125;
+			// 
+			// clm_judul
+			// 
+			this->clm_judul->HeaderText = L"Judul Lagu";
+			this->clm_judul->MinimumWidth = 6;
+			this->clm_judul->Name = L"clm_judul";
+			this->clm_judul->ReadOnly = true;
+			this->clm_judul->Width = 125;
+			// 
+			// clm_penyanyi
+			// 
+			this->clm_penyanyi->HeaderText = L"Nama Penyanyi";
+			this->clm_penyanyi->MinimumWidth = 6;
+			this->clm_penyanyi->Name = L"clm_penyanyi";
+			this->clm_penyanyi->ReadOnly = true;
+			this->clm_penyanyi->Width = 125;
+			// 
+			// btn_search
+			// 
+			this->btn_search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->btn_search->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_search.BackgroundImage")));
+			this->btn_search->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->btn_search->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_search.Image")));
+			this->btn_search->Location = System::Drawing::Point(606, 12);
+			this->btn_search->Name = L"btn_search";
+			this->btn_search->Size = System::Drawing::Size(34, 34);
+			this->btn_search->TabIndex = 10;
+			this->btn_search->UseVisualStyleBackColor = true;
+			this->btn_search->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_search_Click);
 			// 
 			// MenuPlaylist
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(578, 399);
+			this->ClientSize = System::Drawing::Size(669, 399);
+			this->Controls->Add(this->btn_search);
 			this->Controls->Add(this->Tabel_Playlist);
-			this->Controls->Add(this->button7);
+			this->Controls->Add(this->btn_logout);
 			this->Controls->Add(this->btn_download);
 			this->Controls->Add(this->btn_shuffle);
-			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->btn_sort);
+			this->Controls->Add(this->tb_searching);
 			this->Controls->Add(this->btn_delete);
 			this->Controls->Add(this->btn_update);
 			this->Controls->Add(this->btn_tambah);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"MenuPlaylist";
 			this->Text = L"MenuPlaylist";
 			this->Load += gcnew System::EventHandler(this, &MenuPlaylist::MenuPlaylist_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Tabel_Playlist))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-		public: String^ PB_username;
+	public: String^ PB_username;
+	public: bool statusUpdate = false;
+	private: int selected_id;
+	private: String^ selected_lagu;
+	   public: int ExitMenu = 0;
+	private: List<Playlist^>^ menuplaylist = gcnew List<Playlist^>();
 
-		private: String^ selected_lagu;
-		private: List<Playlist^>^ playlist;
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void btn_tambah_Click(System::Object^ sender, System::EventArgs^ e) {
-	Playlist^ dump = gcnew Playlist("ruhul", "siap", 1);
-	playlist->Add(dump);
-	Log_Reg logreg;
+	private: System::Void btn_tambah_Click(System::Object^ sender, System::EventArgs^ e) {
+		/*Update_Lagu^ TambahLagu = gcnew Update_Lagu();
+		TambahLagu->ShowDialog();*/
+		statusUpdate = true;
+		Close();
+	}
+	private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs^ e) {
+		for (int i = 0; i < menuplaylist->Count; i++) {
+			if (menuplaylist[i]->id == selected_id)
+			{
+				menuplaylist->RemoveAt(i);
+			}
+		}
+		Tabel_Playlist->Rows->Clear();
+		for (int i = 0; i < menuplaylist->Count; i++) {
 
-	List<String^>^ WriteLagu = gcnew List<String^>();
-	//StreamReader^ baca = gcnew StreamReader("playlist-" + logreg. + tb_user);
+			Tabel_Playlist->Rows->Add(menuplaylist[i]->id, menuplaylist[i]->judul, menuplaylist[i]->penyayi);
+		}
 
-}
-private: System::Void btn_delete_Click(System::Object^ sender, System::EventArgs^ e) {
-	int pilih = Convert::ToInt32(selected_lagu);
-	for (int i = 0; i < playlist->Count; i++)
-	{
-		if (playlist[i]->id == pilih) {
-			playlist->RemoveAt(i);
+		StreamWriter^ FilePlaylist = gcnew StreamWriter("playlist-" + PB_username + ".txt");
+		for (int i = 0; i < menuplaylist->Count; i++) {
+
+			String^ ReplaceJudul = menuplaylist[i]->judul->TrimEnd()->Replace(" ", "-");
+			String^ ReplacePenyanyi = menuplaylist[i]->penyayi->TrimEnd()->Replace(" ", "-");
+
+			FilePlaylist->WriteLine(menuplaylist[i]->id + " " + ReplaceJudul + " " + ReplacePenyanyi);
+		}
+		FilePlaylist->Close();
+
+	}
+	private: System::Void Tabel_Playlist_CellMouseClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellMouseEventArgs^ e) {
+		selected_lagu = Tabel_Playlist->CurrentRow->Cells[0]->Value->ToString();
+		selected_id = Convert::ToInt32(Tabel_Playlist->CurrentRow->Cells[0]->Value);
+
+	}
+	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		//Update_Lagu.ShowDialog();
+
+	}
+	private: System::Void MenuPlaylist_Load(System::Object^ sender, System::EventArgs^ e) {
+		StreamReader^ ReadLagu = gcnew StreamReader("playlist-" + PB_username + ".txt");
+		String^ line;
+
+		Tabel_Playlist->Rows->Clear();
+		while ((line = ReadLagu->ReadLine()) != nullptr) {
+			int spasi;
+			int id;
+			//String^ Strip;
+			spasi = line->IndexOf(" ");
+			id = Convert::ToInt32(line->Substring(0, spasi));
+
+			line = line->Substring(spasi + 1);
+			String^ judul;
+			String^ penyanyi;
+			spasi = line->IndexOf(" ");
+			judul = line->Substring(0, spasi);
+			penyanyi = line->Substring(spasi + 1);
+
+			judul = judul->Replace("-", " ");
+			penyanyi = penyanyi->Replace("-", " ");
+
+			Playlist^ dump = gcnew Playlist(judul, penyanyi, id);
+			//MessageBox::Show(dump->id + dump->judul + dump->penyayi, "Menu", MessageBoxButtons::OK);
+			menuplaylist->Add(dump);
+
+			//MessageBox::Show(id + "\n" + judul + "\n" + penyanyi + "\n", "USERNAME", MessageBoxButtons::OK);
+		}
+		ReadLagu->Close();
+
+		for (int i = 0; i < menuplaylist->Count; i++) {
+
+			Tabel_Playlist->Rows->Add(menuplaylist[i]->id, menuplaylist[i]->judul, menuplaylist[i]->penyayi);
 		}
 	}
-}
-private: System::Void Tabel_Playlist_CellMouseClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellMouseEventArgs^ e) {
-	selected_lagu = Tabel_Playlist->CurrentRow->Cells[0]->Value->ToString();
+	private: System::Void btn_logout_Click(System::Object^ sender, System::EventArgs^ e) {
+		ExitMenu = 1;
+		Close();
+	}
+	private: System::Void Tabel_Playlist_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	}
+	private: System::Void btn_download_Click(System::Object^ sender, System::EventArgs^ e) {
 
-}
-private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
-	//MessageBox::Show(PB_username, "USERNAME", MessageBoxButtons::OK);
+		StreamWriter^ Download = gcnew StreamWriter(PB_username + "-Music.txt");
+		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
+		Download->WriteLine("| ID |                              Judul Lagu                         |                  Penyanyi                    |");
+		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
 
-}
-private: System::Void MenuPlaylist_Load(System::Object^ sender, System::EventArgs^ e) {
-	
+		for (int i = 0; i < menuplaylist->Count; i++) {
 
-}
-};
+			Download->WriteLine(String::Format("| {0,-3}| {1, -64} | {2,-16} | ", menuplaylist[i]->id, menuplaylist[i]->judul->ToString(), menuplaylist[i]->penyayi->ToString()));
+		}
+
+		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
+		Download->Close();
+	}
+	private: System::Void btn_search_Click(System::Object^ sender, System::EventArgs^ e) {
+		//int id = Convert::ToInt32(tb_searching->Text);
+		String^ judul = tb_searching->Text->ToString();
+		String^ penyanyi = tb_searching->Text->ToString();
+
+		for (int i = 0; i < menuplaylist->Count; i++) {
+			if ((judul == menuplaylist[i]->judul) || (penyanyi == menuplaylist[i]->penyayi)) {
+				MessageBox::Show(menuplaylist[i]->id + " " + menuplaylist[i]->judul + " " + menuplaylist[i]->penyayi, "Hasil Searching", MessageBoxButtons::OK);
+			}
+		}
+	}
+	private: System::Void btn_shuffle_Click(System::Object^ sender, System::EventArgs^ e) {
+		Random^ rand = gcnew Random();
+		int random = rand->Next(menuplaylist->Count);
+
+		MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
+	}
+	};
 }
