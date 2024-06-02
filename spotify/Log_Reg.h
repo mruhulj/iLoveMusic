@@ -129,7 +129,7 @@ namespace spotify {
 			this->btn_ok->Font = (gcnew System::Drawing::Font(L"Poppins", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_ok->ForeColor = System::Drawing::Color::Plum;
-			this->btn_ok->Location = System::Drawing::Point(228, 174);
+			this->btn_ok->Location = System::Drawing::Point(229, 174);
 			this->btn_ok->Margin = System::Windows::Forms::Padding(0);
 			this->btn_ok->Name = L"btn_ok";
 			this->btn_ok->Size = System::Drawing::Size(70, 29);
@@ -194,7 +194,7 @@ namespace spotify {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(526, 291);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->show_password);

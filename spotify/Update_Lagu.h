@@ -74,22 +74,31 @@ namespace spotify {
 			// 
 			this->tb_judul->BackColor = System::Drawing::Color::Plum;
 			this->tb_judul->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->tb_judul->Font = (gcnew System::Drawing::Font(L"Poppins", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->tb_judul->ForeColor = System::Drawing::SystemColors::Window;
-			this->tb_judul->Location = System::Drawing::Point(135, 78);
+			this->tb_judul->Location = System::Drawing::Point(126, 71);
 			this->tb_judul->Margin = System::Windows::Forms::Padding(2);
 			this->tb_judul->Name = L"tb_judul";
-			this->tb_judul->Size = System::Drawing::Size(213, 13);
+			this->tb_judul->Size = System::Drawing::Size(233, 24);
 			this->tb_judul->TabIndex = 1;
+			this->tb_judul->Text = L"Judul Lagu";
+			this->tb_judul->Click += gcnew System::EventHandler(this, &Update_Lagu::label1_Click);
 			// 
 			// tb_penyanyi
 			// 
 			this->tb_penyanyi->BackColor = System::Drawing::Color::Plum;
 			this->tb_penyanyi->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->tb_penyanyi->Location = System::Drawing::Point(135, 127);
+			this->tb_penyanyi->Font = (gcnew System::Drawing::Font(L"Poppins", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tb_penyanyi->ForeColor = System::Drawing::SystemColors::Window;
+			this->tb_penyanyi->Location = System::Drawing::Point(131, 119);
 			this->tb_penyanyi->Margin = System::Windows::Forms::Padding(2);
 			this->tb_penyanyi->Name = L"tb_penyanyi";
-			this->tb_penyanyi->Size = System::Drawing::Size(213, 13);
+			this->tb_penyanyi->Size = System::Drawing::Size(228, 24);
 			this->tb_penyanyi->TabIndex = 3;
+			this->tb_penyanyi->Text = L"Nama Penyanyi";
+			this->tb_penyanyi->Click += gcnew System::EventHandler(this, &Update_Lagu::tb_penyanyi_Click);
 			this->tb_penyanyi->TextChanged += gcnew System::EventHandler(this, &Update_Lagu::textBox2_TextChanged);
 			// 
 			// btn_ok
@@ -97,14 +106,16 @@ namespace spotify {
 			this->btn_ok->BackColor = System::Drawing::Color::Transparent;
 			this->btn_ok->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btn_ok->FlatAppearance->BorderSize = 0;
+			this->btn_ok->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btn_ok->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btn_ok->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btn_ok->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_ok->ForeColor = System::Drawing::Color::White;
-			this->btn_ok->Location = System::Drawing::Point(291, 166);
+			this->btn_ok->Location = System::Drawing::Point(266, 168);
 			this->btn_ok->Margin = System::Windows::Forms::Padding(2);
 			this->btn_ok->Name = L"btn_ok";
-			this->btn_ok->Size = System::Drawing::Size(57, 32);
+			this->btn_ok->Size = System::Drawing::Size(101, 32);
 			this->btn_ok->TabIndex = 4;
 			this->btn_ok->Text = L"OK";
 			this->btn_ok->UseVisualStyleBackColor = false;
@@ -115,14 +126,16 @@ namespace spotify {
 			this->btn_cancel->BackColor = System::Drawing::Color::Transparent;
 			this->btn_cancel->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btn_cancel->FlatAppearance->BorderSize = 0;
+			this->btn_cancel->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btn_cancel->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->btn_cancel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_cancel->ForeColor = System::Drawing::Color::White;
-			this->btn_cancel->Location = System::Drawing::Point(135, 166);
+			this->btn_cancel->Location = System::Drawing::Point(119, 168);
 			this->btn_cancel->Margin = System::Windows::Forms::Padding(2);
 			this->btn_cancel->Name = L"btn_cancel";
-			this->btn_cancel->Size = System::Drawing::Size(78, 32);
+			this->btn_cancel->Size = System::Drawing::Size(108, 32);
 			this->btn_cancel->TabIndex = 5;
 			this->btn_cancel->Text = L"CANCEL";
 			this->btn_cancel->UseVisualStyleBackColor = false;
@@ -159,6 +172,9 @@ namespace spotify {
 
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (tb_judul->Text == "Judul Lagu") {
+			tb_judul->Text = "";
+		}
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -236,5 +252,10 @@ namespace spotify {
 
 
 	}
+private: System::Void tb_penyanyi_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (tb_penyanyi->Text == "Nama Penyanyi") {
+		tb_penyanyi->Text = "";
+	}
+}
 };
 }
