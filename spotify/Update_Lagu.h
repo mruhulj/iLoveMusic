@@ -37,15 +37,16 @@ namespace spotify {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
+
 	private: System::Windows::Forms::TextBox^ tb_judul;
 
-	private: System::Windows::Forms::Label^ label2;
+
 	private: System::Windows::Forms::TextBox^ tb_penyanyi;
 
 	private: System::Windows::Forms::Button^ btn_ok;
 
 	private: System::Windows::Forms::Button^ btn_cancel;
+
 
 	protected:
 
@@ -63,85 +64,68 @@ namespace spotify {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Update_Lagu::typeid));
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->tb_judul = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->tb_penyanyi = (gcnew System::Windows::Forms::TextBox());
 			this->btn_ok = (gcnew System::Windows::Forms::Button());
 			this->btn_cancel = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(28, 46);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(84, 18);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Judul Lagu";
-			this->label1->Click += gcnew System::EventHandler(this, &Update_Lagu::label1_Click);
-			// 
 			// tb_judul
 			// 
-			this->tb_judul->Location = System::Drawing::Point(122, 43);
-			this->tb_judul->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_judul->BackColor = System::Drawing::Color::Plum;
+			this->tb_judul->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->tb_judul->ForeColor = System::Drawing::SystemColors::Window;
+			this->tb_judul->Location = System::Drawing::Point(135, 78);
+			this->tb_judul->Margin = System::Windows::Forms::Padding(2);
 			this->tb_judul->Name = L"tb_judul";
-			this->tb_judul->Size = System::Drawing::Size(162, 20);
+			this->tb_judul->Size = System::Drawing::Size(213, 13);
 			this->tb_judul->TabIndex = 1;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->ForeColor = System::Drawing::SystemColors::Control;
-			this->label2->Location = System::Drawing::Point(28, 76);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(72, 18);
-			this->label2->TabIndex = 2;
-			this->label2->Text = L"Penyanyi";
-			this->label2->Click += gcnew System::EventHandler(this, &Update_Lagu::label2_Click);
 			// 
 			// tb_penyanyi
 			// 
-			this->tb_penyanyi->Location = System::Drawing::Point(122, 76);
-			this->tb_penyanyi->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->tb_penyanyi->BackColor = System::Drawing::Color::Plum;
+			this->tb_penyanyi->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->tb_penyanyi->Location = System::Drawing::Point(135, 127);
+			this->tb_penyanyi->Margin = System::Windows::Forms::Padding(2);
 			this->tb_penyanyi->Name = L"tb_penyanyi";
-			this->tb_penyanyi->Size = System::Drawing::Size(162, 20);
+			this->tb_penyanyi->Size = System::Drawing::Size(213, 13);
 			this->tb_penyanyi->TabIndex = 3;
 			this->tb_penyanyi->TextChanged += gcnew System::EventHandler(this, &Update_Lagu::textBox2_TextChanged);
 			// 
 			// btn_ok
 			// 
-			this->btn_ok->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btn_ok->BackColor = System::Drawing::Color::Transparent;
+			this->btn_ok->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btn_ok->FlatAppearance->BorderSize = 0;
+			this->btn_ok->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_ok->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_ok->Location = System::Drawing::Point(204, 110);
-			this->btn_ok->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_ok->ForeColor = System::Drawing::Color::White;
+			this->btn_ok->Location = System::Drawing::Point(291, 166);
+			this->btn_ok->Margin = System::Windows::Forms::Padding(2);
 			this->btn_ok->Name = L"btn_ok";
-			this->btn_ok->Size = System::Drawing::Size(79, 32);
+			this->btn_ok->Size = System::Drawing::Size(57, 32);
 			this->btn_ok->TabIndex = 4;
 			this->btn_ok->Text = L"OK";
-			this->btn_ok->UseVisualStyleBackColor = true;
+			this->btn_ok->UseVisualStyleBackColor = false;
 			this->btn_ok->Click += gcnew System::EventHandler(this, &Update_Lagu::btn_ok_Click);
 			// 
 			// btn_cancel
 			// 
-			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btn_cancel->BackColor = System::Drawing::Color::Transparent;
+			this->btn_cancel->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btn_cancel->FlatAppearance->BorderSize = 0;
+			this->btn_cancel->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btn_cancel->Location = System::Drawing::Point(122, 110);
-			this->btn_cancel->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btn_cancel->ForeColor = System::Drawing::Color::White;
+			this->btn_cancel->Location = System::Drawing::Point(135, 166);
+			this->btn_cancel->Margin = System::Windows::Forms::Padding(2);
 			this->btn_cancel->Name = L"btn_cancel";
 			this->btn_cancel->Size = System::Drawing::Size(78, 32);
 			this->btn_cancel->TabIndex = 5;
 			this->btn_cancel->Text = L"CANCEL";
-			this->btn_cancel->UseVisualStyleBackColor = true;
+			this->btn_cancel->UseVisualStyleBackColor = false;
 			this->btn_cancel->Click += gcnew System::EventHandler(this, &Update_Lagu::btn_cancel_Click);
 			// 
 			// Update_Lagu
@@ -149,17 +133,17 @@ namespace spotify {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(352, 161);
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(484, 242);
 			this->Controls->Add(this->btn_cancel);
 			this->Controls->Add(this->btn_ok);
 			this->Controls->Add(this->tb_penyanyi);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->tb_judul);
-			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"Update_Lagu";
-			this->Text = L"Lagu";
+			this->Text = L"iLoveMusic";
 			this->Load += gcnew System::EventHandler(this, &Update_Lagu::Update_Lagu_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -252,5 +236,5 @@ namespace spotify {
 
 
 	}
-	};
+};
 }

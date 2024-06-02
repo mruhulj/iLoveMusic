@@ -5,49 +5,6 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-//void main(array<String^>^ args) {
-//	Application::EnableVisualStyles();
-//	Application::SetCompatibleTextRenderingDefault(false);
-//
-//
-//	spotify::Log_Reg logReg;
-//	bool statusprogram = true;
-//
-//	while (statusprogram) {
-//		logReg.ShowDialog();
-//
-//		if (logReg.ExitLog == true) {
-//			statusprogram = false;
-//		}
-//		if (logReg.login)
-//		{
-//			spotify::MenuPlaylist menuplaylist;
-//			spotify::Update_Lagu update_lagu;
-//
-//			menuplaylist.PB_username = logReg.PB_username;
-//			menuplaylist.statusUpdate = update_lagu.statusUpdate;
-//
-//
-//			while (menuplaylist.ExitMenu != 1) {
-//				menuplaylist.ShowDialog();
-//				/*if (menuplaylist.ExitMenu == 1) {
-//					MessageBox::Show("logout", "weaeawea", MessageBoxButtons::OK);
-//					break;
-//				}*/
-//				if (menuplaylist.statusUpdate) {
-//					update_lagu.PB_username = menuplaylist.PB_username;
-//					update_lagu.ShowDialog();
-//					menuplaylist.ExitMenu = 0;
-//
-//				}
-//				
-//				//logReg.Close();
-//			}
-//
-//		}
-//	}
-//}
-
 
 void main(array<String^>^ args) {
 	Application::EnableVisualStyles();
@@ -59,12 +16,20 @@ void main(array<String^>^ args) {
 
 	while (statusProgram) {
 		logReg.ShowDialog();
+		if (logReg.ExitLog) {
+			statusProgram = false;
+			break;
+		}
 
 		while (logReg.login) {
 			spotify::MenuPlaylist menuPlaylist;
 			menuPlaylist.PB_username = logReg.PB_username;
 			menuPlaylist.ShowDialog();
 			if (menuPlaylist.logout) {
+				break;
+			}
+			if (menuPlaylist.exitbtn) {
+				statusProgram = false;
 				break;
 			}
 			if (menuPlaylist.statusUpdate || menuPlaylist.status_up_lagu) {
