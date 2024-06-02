@@ -245,7 +245,7 @@ namespace spotify {
 
 			}
 			if (login == false) {
-				MessageBox::Show("Gagal Lgoin", "TEST", MessageBoxButtons::OK);
+				MessageBox::Show("Gagal Lgoin", "iLoveMusic", MessageBoxButtons::OK);
 			}
 			reader->Close();
 		}
@@ -269,7 +269,7 @@ namespace spotify {
 
 		}
 		catch (Exception^ e) {
-			MessageBox::Show(e->Message, "TEST", MessageBoxButtons::OK);
+			MessageBox::Show(e->Message, "iLoveMusic", MessageBoxButtons::OK);
 		}
 		baca->Close();
 
@@ -288,7 +288,7 @@ namespace spotify {
 				line = line->Substring(0, slice);
 
 				if (line == username) {
-					MessageBox::Show("Username used", "TEST", MessageBoxButtons::OK);
+					MessageBox::Show("Username used", "iLoveMusic", MessageBoxButtons::OK);
 					reader->Close();
 					return;
 				}
@@ -301,7 +301,7 @@ namespace spotify {
 				writer->WriteLine(Overwrite[i]);
 			}
 			writer->Close();
-			MessageBox::Show("Berhasil Register", "TEST", MessageBoxButtons::OK);
+			MessageBox::Show("Berhasil Register", "iLoveMusic", MessageBoxButtons::OK);
 			StreamWriter^ FilePlaylist = gcnew StreamWriter("playlist-" + username + ".txt");
 			FilePlaylist->Close();
 			reader->Close();
