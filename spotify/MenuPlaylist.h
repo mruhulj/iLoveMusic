@@ -60,10 +60,14 @@ namespace spotify {
 
 
 	private: System::Windows::Forms::DataGridView^ Tabel_Playlist;
+
+
+
+	private: System::Windows::Forms::Button^ btn_search;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_judul;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_penyanyi;
-	private: System::Windows::Forms::Button^ btn_search;
+
 
 
 
@@ -102,7 +106,10 @@ namespace spotify {
 			// btn_tambah
 			// 
 			this->btn_tambah->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_tambah.BackgroundImage")));
+			this->btn_tambah->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
 			this->btn_tambah->Location = System::Drawing::Point(12, 58);
+			this->btn_tambah->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_tambah->Name = L"btn_tambah";
 			this->btn_tambah->Size = System::Drawing::Size(133, 30);
 			this->btn_tambah->TabIndex = 0;
@@ -112,7 +119,10 @@ namespace spotify {
 			// 
 			// btn_update
 			// 
-			this->btn_update->Location = System::Drawing::Point(12, 104);
+			this->btn_update->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
+			this->btn_update->Location = System::Drawing::Point(12, 103);
+			this->btn_update->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_update->Name = L"btn_update";
 			this->btn_update->Size = System::Drawing::Size(133, 30);
 			this->btn_update->TabIndex = 1;
@@ -122,7 +132,10 @@ namespace spotify {
 			// 
 			// btn_delete
 			// 
+			this->btn_delete->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
 			this->btn_delete->Location = System::Drawing::Point(12, 151);
+			this->btn_delete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_delete->Name = L"btn_delete";
 			this->btn_delete->Size = System::Drawing::Size(133, 30);
 			this->btn_delete->TabIndex = 2;
@@ -134,14 +147,18 @@ namespace spotify {
 			// 
 			this->tb_searching->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->tb_searching->Location = System::Drawing::Point(234, 16);
+			this->tb_searching->Location = System::Drawing::Point(235, 16);
+			this->tb_searching->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_searching->Name = L"tb_searching";
-			this->tb_searching->Size = System::Drawing::Size(364, 22);
+			this->tb_searching->Size = System::Drawing::Size(445, 22);
 			this->tb_searching->TabIndex = 4;
 			// 
 			// btn_shuffle
 			// 
+			this->btn_shuffle->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
 			this->btn_shuffle->Location = System::Drawing::Point(12, 196);
+			this->btn_shuffle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_shuffle->Name = L"btn_shuffle";
 			this->btn_shuffle->Size = System::Drawing::Size(133, 30);
 			this->btn_shuffle->TabIndex = 6;
@@ -151,7 +168,10 @@ namespace spotify {
 			// 
 			// btn_download
 			// 
+			this->btn_download->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
 			this->btn_download->Location = System::Drawing::Point(12, 241);
+			this->btn_download->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_download->Name = L"btn_download";
 			this->btn_download->Size = System::Drawing::Size(133, 30);
 			this->btn_download->TabIndex = 7;
@@ -161,7 +181,10 @@ namespace spotify {
 			// 
 			// btn_logout
 			// 
+			this->btn_logout->Font = (gcnew System::Drawing::Font(L"Gotham", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(77)));
 			this->btn_logout->Location = System::Drawing::Point(12, 357);
+			this->btn_logout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_logout->Name = L"btn_logout";
 			this->btn_logout->Size = System::Drawing::Size(133, 30);
 			this->btn_logout->TabIndex = 8;
@@ -176,17 +199,19 @@ namespace spotify {
 			this->Tabel_Playlist->AllowUserToOrderColumns = true;
 			this->Tabel_Playlist->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->Tabel_Playlist->BackgroundColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->Tabel_Playlist->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->Tabel_Playlist->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->clm_id,
 					this->clm_judul, this->clm_penyanyi
 			});
-			this->Tabel_Playlist->Location = System::Drawing::Point(234, 58);
+			this->Tabel_Playlist->Location = System::Drawing::Point(235, 58);
+			this->Tabel_Playlist->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Tabel_Playlist->Name = L"Tabel_Playlist";
 			this->Tabel_Playlist->ReadOnly = true;
 			this->Tabel_Playlist->RowHeadersWidth = 51;
 			this->Tabel_Playlist->RowTemplate->Height = 24;
-			this->Tabel_Playlist->Size = System::Drawing::Size(406, 247);
+			this->Tabel_Playlist->Size = System::Drawing::Size(488, 327);
 			this->Tabel_Playlist->TabIndex = 9;
 			this->Tabel_Playlist->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellContentClick);
 			this->Tabel_Playlist->CellMouseClick += gcnew System::Windows::Forms::DataGridViewCellMouseEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellMouseClick);
@@ -197,7 +222,7 @@ namespace spotify {
 			this->clm_id->MinimumWidth = 6;
 			this->clm_id->Name = L"clm_id";
 			this->clm_id->ReadOnly = true;
-			this->clm_id->Width = 125;
+			this->clm_id->Width = 50;
 			// 
 			// clm_judul
 			// 
@@ -205,7 +230,7 @@ namespace spotify {
 			this->clm_judul->MinimumWidth = 6;
 			this->clm_judul->Name = L"clm_judul";
 			this->clm_judul->ReadOnly = true;
-			this->clm_judul->Width = 125;
+			this->clm_judul->Width = 150;
 			// 
 			// clm_penyanyi
 			// 
@@ -213,18 +238,18 @@ namespace spotify {
 			this->clm_penyanyi->MinimumWidth = 6;
 			this->clm_penyanyi->Name = L"clm_penyanyi";
 			this->clm_penyanyi->ReadOnly = true;
-			this->clm_penyanyi->Width = 125;
+			this->clm_penyanyi->Width = 150;
 			// 
 			// btn_search
 			// 
-			this->btn_search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
+			this->btn_search->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btn_search->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_search.BackgroundImage")));
 			this->btn_search->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->btn_search->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_search.Image")));
-			this->btn_search->Location = System::Drawing::Point(606, 12);
+			this->btn_search->Location = System::Drawing::Point(688, 10);
+			this->btn_search->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_search->Name = L"btn_search";
-			this->btn_search->Size = System::Drawing::Size(34, 34);
+			this->btn_search->Size = System::Drawing::Size(35, 34);
 			this->btn_search->TabIndex = 10;
 			this->btn_search->UseVisualStyleBackColor = true;
 			this->btn_search->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_search_Click);
@@ -233,7 +258,9 @@ namespace spotify {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(669, 399);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(792, 399);
 			this->Controls->Add(this->btn_search);
 			this->Controls->Add(this->Tabel_Playlist);
 			this->Controls->Add(this->btn_logout);
@@ -244,8 +271,10 @@ namespace spotify {
 			this->Controls->Add(this->btn_update);
 			this->Controls->Add(this->btn_tambah);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MenuPlaylist";
 			this->Text = L"MenuPlaylist";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MenuPlaylist::MenuPlaylist_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &MenuPlaylist::MenuPlaylist_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Tabel_Playlist))->EndInit();
 			this->ResumeLayout(false);
@@ -254,10 +283,13 @@ namespace spotify {
 		}
 #pragma endregion
 	public: String^ PB_username;
+	public: bool status_up_lagu = false;
 	public: bool statusUpdate = false;
+	public: bool logout = false;
 	private: int selected_id;
-	private: String^ selected_lagu;
-	   public: int ExitMenu = 0;
+	public: String^ selected_lagu;
+		  public: String^ selected_penyanyi;
+	public: int ExitMenu = 0;
 	private: List<Playlist^>^ menuplaylist = gcnew List<Playlist^>();
 
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -289,24 +321,14 @@ namespace spotify {
 			String^ ReplaceJudul = menuplaylist[i]->judul->TrimEnd()->Replace(" ", "-");
 			String^ ReplacePenyanyi = menuplaylist[i]->penyayi->TrimEnd()->Replace(" ", "-");
 
-			FilePlaylist->WriteLine(menuplaylist[i]->id + " " + ReplaceJudul + " " + ReplacePenyanyi);
+			FilePlaylist->WriteLine(i + 1 + " " + ReplaceJudul + " " + ReplacePenyanyi);
 		}
 		FilePlaylist->Close();
-
-	}
-	private: System::Void Tabel_Playlist_CellMouseClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellMouseEventArgs^ e) {
-		selected_lagu = Tabel_Playlist->CurrentRow->Cells[0]->Value->ToString();
-		selected_id = Convert::ToInt32(Tabel_Playlist->CurrentRow->Cells[0]->Value);
-
-	}
-	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
-		//Update_Lagu.ShowDialog();
-
-	}
-	private: System::Void MenuPlaylist_Load(System::Object^ sender, System::EventArgs^ e) {
+		Tabel_Playlist->Rows->Clear();
+		menuplaylist->Clear();
 		StreamReader^ ReadLagu = gcnew StreamReader("playlist-" + PB_username + ".txt");
 		String^ line;
-
+		int count = 1;
 		Tabel_Playlist->Rows->Clear();
 		while ((line = ReadLagu->ReadLine()) != nullptr) {
 			int spasi;
@@ -325,9 +347,56 @@ namespace spotify {
 			judul = judul->Replace("-", " ");
 			penyanyi = penyanyi->Replace("-", " ");
 
-			Playlist^ dump = gcnew Playlist(judul, penyanyi, id);
+			Playlist^ dump = gcnew Playlist(judul, penyanyi, count);
 			//MessageBox::Show(dump->id + dump->judul + dump->penyayi, "Menu", MessageBoxButtons::OK);
 			menuplaylist->Add(dump);
+			count++;
+
+			//MessageBox::Show(id + "\n" + judul + "\n" + penyanyi + "\n", "USERNAME", MessageBoxButtons::OK);
+		}
+		ReadLagu->Close();
+		for (int i = 0; i < menuplaylist->Count; i++) {
+
+			Tabel_Playlist->Rows->Add(menuplaylist[i]->id, menuplaylist[i]->judul, menuplaylist[i]->penyayi);
+		}
+	}
+	private: System::Void Tabel_Playlist_CellMouseClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellMouseEventArgs^ e) {
+		selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
+		selected_penyanyi = Tabel_Playlist->CurrentRow->Cells[2]->Value->ToString();
+		selected_id = Convert::ToInt32(Tabel_Playlist->CurrentRow->Cells[0]->Value);
+
+	}
+	private: System::Void btn_update_click(System::Object^ sender, System::EventArgs^ e) {
+		status_up_lagu = true;
+		Close();
+
+	}
+	private: System::Void MenuPlaylist_Load(System::Object^ sender, System::EventArgs^ e) {
+		StreamReader^ ReadLagu = gcnew StreamReader("playlist-" + PB_username + ".txt");
+		String^ line;
+		int count = 1;
+		Tabel_Playlist->Rows->Clear();
+		while ((line = ReadLagu->ReadLine()) != nullptr) {
+			int spasi;
+			int id;
+			//String^ Strip;
+			spasi = line->IndexOf(" ");
+			id = Convert::ToInt32(line->Substring(0, spasi));
+
+			line = line->Substring(spasi + 1);
+			String^ judul;
+			String^ penyanyi;
+			spasi = line->IndexOf(" ");
+			judul = line->Substring(0, spasi);
+			penyanyi = line->Substring(spasi + 1);
+
+			judul = judul->Replace("-", " ");
+			penyanyi = penyanyi->Replace("-", " ");
+
+			Playlist^ dump = gcnew Playlist(judul, penyanyi, count);
+			//MessageBox::Show(dump->id + dump->judul + dump->penyayi, "Menu", MessageBoxButtons::OK);
+			menuplaylist->Add(dump);
+			count++;
 
 			//MessageBox::Show(id + "\n" + judul + "\n" + penyanyi + "\n", "USERNAME", MessageBoxButtons::OK);
 		}
@@ -339,10 +408,12 @@ namespace spotify {
 		}
 	}
 	private: System::Void btn_logout_Click(System::Object^ sender, System::EventArgs^ e) {
-		ExitMenu = 1;
+		logout = true;
 		Close();
 	}
 	private: System::Void Tabel_Playlist_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	//public: String^ Pilih_Lagu;
+
 	}
 	private: System::Void btn_download_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -375,6 +446,9 @@ namespace spotify {
 		int random = rand->Next(menuplaylist->Count);
 
 		MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
+	}
+	private: System::Void MenuPlaylist_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		//ExitMenu = 1;
 	}
 	};
 }

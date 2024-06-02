@@ -142,6 +142,7 @@ namespace spotify {
 			this->Controls->Add(this->lb_username);
 			this->Name = L"Log_Reg";
 			this->Text = L"Log_Reg";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Log_Reg::Log_Reg_FormClosing);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -149,6 +150,7 @@ namespace spotify {
 #pragma endregion
 		public: String^ PB_username;
 		public: bool login = false;
+		public: bool ExitLog = false;
 
 	private: System::Void input_login_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -208,8 +210,8 @@ namespace spotify {
 			StreamReader^ reader = gcnew StreamReader("user.txt");
 			String^ line;
 			int slice;
-			String^ username = tb_username->Text->ToString();
-			String^ password = tb_password->Text->ToString();
+			String^ username = tb_username->Text->ToString()->ToLower();
+			String^ password = tb_password->Text->ToString()->ToLower();
 			String^ temp = username + " " + password;
 
 			while ((line = reader->ReadLine()) != nullptr)
@@ -245,5 +247,15 @@ namespace spotify {
 		}
 
 	}
-	};
+	private: System::Void Log_Reg_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		/*if (ExitLog == true) {
+			ExitLog = false;
+		}
+		else if (ExitLog == false) {
+			ExitLog = true;
+		}*/
+		//ExitLog = true;
+		
+	}
+};
 }
