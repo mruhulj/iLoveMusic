@@ -10,6 +10,9 @@ namespace spotify {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
+	using namespace System::IO;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Summary for playingmusic
@@ -174,9 +177,13 @@ namespace spotify {
 #pragma endregion
 		public: String^ selected_lagu;
 		public: String^ selected_penyanyi;
+		public: String^ Shuffle_Lagu;
 		public: int random;
 		public: bool rand_music = false;
-		private: List<Playlist^>^ playing_music = gcnew List<Playlist^>();
+		public: String^ Shuffle_Penyanyi;
+
+		public: List<Playlist^>^ playing_music = gcnew List<Playlist^>();
+
 
 
 	private: System::Void lbl_judul_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -192,16 +199,20 @@ private: System::Void btn_ok_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void playingmusic_Load(System::Object^ sender, System::EventArgs^ e) {
 	if (lbl_judul->Text == "Judul" || lbl_judul->Text == "") {
 		lbl_judul->Text = selected_lagu;
+
+		if (lbl_penyanyi->Text == "Penyanyi" || lbl_penyanyi->Text == "") {
+			lbl_penyanyi->Text = selected_penyanyi;
+		}
+		
 	}
-	else if (rand_music) {
-		lbl_judul->Text = playing_music[random]->judul;
+	
+
+	if (rand_music) {
+		lbl_judul->Text = Shuffle_Lagu;
+		lbl_penyanyi->Text = Shuffle_Penyanyi;
+
 	}
-	if (lbl_penyanyi->Text == "Penyanyi" || lbl_penyanyi->Text == "") {
-		lbl_penyanyi->Text = selected_penyanyi;
-	}
-	else if (rand_music) {
-		lbl_penyanyi->Text = playing_music[random]->penyayi;
-	}
+	
 
 
 }

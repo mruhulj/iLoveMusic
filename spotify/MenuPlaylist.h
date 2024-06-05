@@ -435,7 +435,10 @@ namespace spotify {
 	public: bool exitbtn = false;
 	public: bool playingmusic = false;
 	public: int random;
-		  public: bool rand_music = false;
+	public: bool rand_music = false;
+	public: String^ openfile;
+	public: String^ Shuffle_Lagu;
+		  public: String^ Shuffle_Penyanyi;
 
 	private: List<Playlist^>^ menuplaylist = gcnew List<Playlist^>();
 
@@ -551,6 +554,7 @@ namespace spotify {
 
 		for (int i = 0; i < menuplaylist->Count; i++) {
 
+			//Tabel_Playlist->Rows->Add(menuplaylist[i]->id, menuplaylist[i]->judul, menuplaylist[i]->penyayi);
 			Tabel_Playlist->Rows->Add(menuplaylist[i]->id, menuplaylist[i]->judul, menuplaylist[i]->penyayi);
 		}
 	}
@@ -564,7 +568,8 @@ namespace spotify {
 	}
 	private: System::Void btn_download_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		StreamWriter^ Download = gcnew StreamWriter(PB_username + "-Music.txt");
+		StreamWriter^ Download = gcnew StreamWriter(PB_username + "-iLoveMusic.txt");
+		Download->WriteLine("                                                      iLoveMusic                                                      ");
 		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
 		Download->WriteLine("| ID |                              Judul Lagu                         |                  Penyanyi                    |");
 		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
@@ -576,6 +581,7 @@ namespace spotify {
 
 		Download->WriteLine(" ---------------------------------------------------------------------------------------------------------------------");
 		Download->Close();
+		MessageBox::Show("Download Playlist Berhasil", "iLoveMusic", MessageBoxButtons::OK);
 	}
 	private: System::Void btn_search_Click(System::Object^ sender, System::EventArgs^ e) {
 		//int id = Convert::ToInt32(tb_searching->Text);
@@ -593,11 +599,13 @@ namespace spotify {
 		random = rand->Next(menuplaylist->Count);
 
 		//MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
-		SoundPlayer^ player = gcnew SoundPlayer(menuplaylist[random]->judul + ".wav");
+		SoundPlayer^ shuffle = gcnew SoundPlayer(menuplaylist[random]->judul + ".wav");
+		Shuffle_Lagu = menuplaylist[random]->judul;
+		Shuffle_Penyanyi = menuplaylist[random]->penyayi;
 		playingmusic = true;
 		rand_music = true;
 		Close();
-		player->Play();
+		shuffle->Play();
 
 	}
 	private: System::Void MenuPlaylist_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
@@ -613,13 +621,14 @@ private: System::Void btn_play_Click(System::Object^ sender, System::EventArgs^ 
 	selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
 
 	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
+
 	playingmusic = true;
 	Close();
 	player->Play();
 
 }
 private: System::Void btn_stop_Click(System::Object^ sender, System::EventArgs^ e) {
-	selected_penyanyi = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
+	selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
 
 	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
 	player->Stop();

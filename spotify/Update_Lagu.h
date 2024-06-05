@@ -38,7 +38,7 @@ namespace spotify {
 			}
 		}
 
-	private: System::Windows::Forms::TextBox^ tb_judul;
+
 
 
 	private: System::Windows::Forms::TextBox^ tb_penyanyi;
@@ -46,6 +46,9 @@ namespace spotify {
 	private: System::Windows::Forms::Button^ btn_ok;
 
 	private: System::Windows::Forms::Button^ btn_cancel;
+
+	private: System::Windows::Forms::TextBox^ tb_judul;
+
 
 
 
@@ -65,26 +68,11 @@ namespace spotify {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Update_Lagu::typeid));
-			this->tb_judul = (gcnew System::Windows::Forms::TextBox());
 			this->tb_penyanyi = (gcnew System::Windows::Forms::TextBox());
 			this->btn_ok = (gcnew System::Windows::Forms::Button());
 			this->btn_cancel = (gcnew System::Windows::Forms::Button());
+			this->tb_judul = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
-			// 
-			// tb_judul
-			// 
-			this->tb_judul->BackColor = System::Drawing::Color::Plum;
-			this->tb_judul->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->tb_judul->Font = (gcnew System::Drawing::Font(L"Poppins", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tb_judul->ForeColor = System::Drawing::SystemColors::Window;
-			this->tb_judul->Location = System::Drawing::Point(126, 71);
-			this->tb_judul->Margin = System::Windows::Forms::Padding(2);
-			this->tb_judul->Name = L"tb_judul";
-			this->tb_judul->Size = System::Drawing::Size(233, 24);
-			this->tb_judul->TabIndex = 1;
-			this->tb_judul->Text = L"Judul Lagu";
-			this->tb_judul->Click += gcnew System::EventHandler(this, &Update_Lagu::label1_Click);
 			// 
 			// tb_penyanyi
 			// 
@@ -92,11 +80,11 @@ namespace spotify {
 			this->tb_penyanyi->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->tb_penyanyi->Font = (gcnew System::Drawing::Font(L"Poppins", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tb_penyanyi->ForeColor = System::Drawing::SystemColors::Window;
-			this->tb_penyanyi->Location = System::Drawing::Point(131, 119);
+			this->tb_penyanyi->ForeColor = System::Drawing::Color::White;
+			this->tb_penyanyi->Location = System::Drawing::Point(163, 152);
 			this->tb_penyanyi->Margin = System::Windows::Forms::Padding(2);
 			this->tb_penyanyi->Name = L"tb_penyanyi";
-			this->tb_penyanyi->Size = System::Drawing::Size(228, 24);
+			this->tb_penyanyi->Size = System::Drawing::Size(286, 24);
 			this->tb_penyanyi->TabIndex = 3;
 			this->tb_penyanyi->Text = L"Nama Penyanyi";
 			this->tb_penyanyi->Click += gcnew System::EventHandler(this, &Update_Lagu::tb_penyanyi_Click);
@@ -113,7 +101,7 @@ namespace spotify {
 			this->btn_ok->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_ok->ForeColor = System::Drawing::Color::White;
-			this->btn_ok->Location = System::Drawing::Point(266, 168);
+			this->btn_ok->Location = System::Drawing::Point(340, 212);
 			this->btn_ok->Margin = System::Windows::Forms::Padding(2);
 			this->btn_ok->Name = L"btn_ok";
 			this->btn_ok->Size = System::Drawing::Size(101, 32);
@@ -133,7 +121,7 @@ namespace spotify {
 			this->btn_cancel->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_cancel->ForeColor = System::Drawing::Color::White;
-			this->btn_cancel->Location = System::Drawing::Point(119, 168);
+			this->btn_cancel->Location = System::Drawing::Point(166, 212);
 			this->btn_cancel->Margin = System::Windows::Forms::Padding(2);
 			this->btn_cancel->Name = L"btn_cancel";
 			this->btn_cancel->Size = System::Drawing::Size(108, 32);
@@ -142,13 +130,29 @@ namespace spotify {
 			this->btn_cancel->UseVisualStyleBackColor = false;
 			this->btn_cancel->Click += gcnew System::EventHandler(this, &Update_Lagu::btn_cancel_Click);
 			// 
+			// tb_judul
+			// 
+			this->tb_judul->BackColor = System::Drawing::Color::Plum;
+			this->tb_judul->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->tb_judul->Font = (gcnew System::Drawing::Font(L"Poppins", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tb_judul->ForeColor = System::Drawing::Color::Transparent;
+			this->tb_judul->Location = System::Drawing::Point(161, 92);
+			this->tb_judul->Margin = System::Windows::Forms::Padding(2);
+			this->tb_judul->Name = L"tb_judul";
+			this->tb_judul->Size = System::Drawing::Size(280, 24);
+			this->tb_judul->TabIndex = 1;
+			this->tb_judul->Text = L"Judul Lagu";
+			this->tb_judul->Click += gcnew System::EventHandler(this, &Update_Lagu::label1_Click);
+			this->tb_judul->TextChanged += gcnew System::EventHandler(this, &Update_Lagu::tb_judul_TextChanged);
+			// 
 			// Update_Lagu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(484, 242);
+			this->ClientSize = System::Drawing::Size(605, 302);
 			this->Controls->Add(this->btn_cancel);
 			this->Controls->Add(this->btn_ok);
 			this->Controls->Add(this->tb_penyanyi);
@@ -168,24 +172,50 @@ namespace spotify {
 	public: bool statusUpdate = false;
 	public: bool status_up_lagu = false;
 	public: String^ selected_lagu;
-	 public: String^ selected_penyanyi;
+	public: String^ selected_penyanyi;
 	private: List<Playlist^>^ update_lagu = gcnew List<Playlist^>();
+	public: OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+	public: String^ fileName;
+	public: String^ filePath;
 
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (tb_judul->Text == "Judul Lagu") {
+		/*if (tb_judul->Text == "Judul Lagu") {
 			tb_judul->Text = "";
-		}
+		}*/
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+		   private: System::Void LoadWavFile()
+		   {
+
+
+			   openFileDialog->Filter = "WAV files|*.wav|All files|*.*";
+			   openFileDialog->Title = "iLoveMusic";
+
+			   if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				   fileName = System::IO::Path::GetFileName(openFileDialog->FileName);
+				   filePath = openFileDialog->FileName;
+				   //dataGridViewSongs->Rows->Add(fileName, filePath);
+				   //this->cb_lagu->Items->Add(fileName->Replace(".wav", ""));
+				   //MessageBox::Show(fileName, "test", MessageBoxButtons::OK);
+			   }
+
+			   
+		   }
 	private: System::Void Update_Lagu_Load(System::Object^ sender, System::EventArgs^ e) {
-		if (status_up_lagu == true) {
-			tb_judul->Text = selected_lagu;
-			tb_penyanyi->Text = selected_penyanyi;
+		LoadWavFile();
+		if (status_up_lagu || statusUpdate == false) {
+			if (tb_judul->Text == "Judul Lagu") {
+				tb_judul->Text = fileName->Replace(".wav","");
+				//MessageBox::Show(tb_judul->ToString(), "test", MessageBoxButtons::OK);
+			}
+			
+			//tb_penyanyi->Text = selected_penyanyi;
 		}
+		
 	}
 	private: System::Void btn_cancel_Click(System::Object^ sender, System::EventArgs^ e) {
 		//cancel = false;
@@ -195,10 +225,10 @@ namespace spotify {
 	private: System::Void btn_ok_Click(System::Object^ sender, System::EventArgs^ e) {
 		StreamReader^ Baca_Lagu = gcnew StreamReader("playlist-" + PB_username + ".txt");
 		String^ line;
-		String^ up_judul = tb_judul->Text->ToString();
+		//String^ up_judul = cb_lagu->Text->ToString()->Replace(".wav", "");
+		String^ up_judul = tb_judul->Text->ToString()->Replace(".wav", "");
 		String^ up_penyanyi = tb_penyanyi->Text->ToString();
 		int count = 1;
-
 		while ((line = Baca_Lagu->ReadLine()) != nullptr) {
 			int spasi;
 			
@@ -260,6 +290,12 @@ private: System::Void tb_penyanyi_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 
+}
+
+
+private: System::Void cb_lagu_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void tb_judul_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
