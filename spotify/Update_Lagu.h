@@ -202,7 +202,7 @@ namespace spotify {
 				   //this->cb_lagu->Items->Add(fileName->Replace(".wav", ""));
 				   //MessageBox::Show(fileName, "test", MessageBoxButtons::OK);
 			   }
-
+			   this->Activate();
 			   
 		   }
 	private: System::Void Update_Lagu_Load(System::Object^ sender, System::EventArgs^ e) {
