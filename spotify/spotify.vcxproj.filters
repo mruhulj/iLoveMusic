@@ -30,6 +30,9 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="playingmusic.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TambahLagu.h">
@@ -47,5 +50,13 @@
     <ClInclude Include="Log_Reg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="playingmusic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\1013 (4).gif">
+      <Filter>Header Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

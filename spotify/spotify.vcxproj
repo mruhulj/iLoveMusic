@@ -80,7 +80,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="Log_Reg.cpp" />
     <ClCompile Include="MenuPlaylist.cpp" />
+    <ClCompile Include="playingmusic.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="TambahLagu.cpp" />
     <ClCompile Include="Update_Lagu.cpp" />
@@ -131,6 +132,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MenuPlaylist.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="playingmusic.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Playlist_Struct.h" />
@@ -148,9 +152,15 @@
     <EmbeddedResource Include="MenuPlaylist.resx">
       <DependentUpon>MenuPlaylist.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="playingmusic.resx">
+      <DependentUpon>playingmusic.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Update_Lagu.resx">
       <DependentUpon>Update_Lagu.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\1013 (4).gif" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

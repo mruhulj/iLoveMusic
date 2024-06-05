@@ -48,6 +48,7 @@ namespace spotify {
 	private: System::Windows::Forms::Button^ btn_cancel;
 
 
+
 	protected:
 
 	private:
@@ -256,6 +257,9 @@ private: System::Void tb_penyanyi_Click(System::Object^ sender, System::EventArg
 	if (tb_penyanyi->Text == "Nama Penyanyi") {
 		tb_penyanyi->Text = "";
 	}
+}
+private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
 }
 };
 }

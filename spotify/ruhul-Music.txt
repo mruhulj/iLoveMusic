@@ -2,7 +2,8 @@
 | ID |                              Judul Lagu                         |                  Penyanyi                    |
  ---------------------------------------------------------------------------------------------------------------------
 | 1  | sza                                                             | bebek                                        | 
-| 2  | najajaayay                                                      | jkaghakfh                                    | 
-| 3  | saturnn                                                         | sazaaaa                                      | 
-| 4  | saturn                                                          | sza                                          | 
+| 2  | saturnn                                                         | sazaaaa                                      | 
+| 3  | 10 minutes                                                      | lee hyori                                    | 
+| 4  | love story                                                      | taylor swift                                 | 
+| 5  | Good Days                                                       | sza                                          | 
  ---------------------------------------------------------------------------------------------------------------------

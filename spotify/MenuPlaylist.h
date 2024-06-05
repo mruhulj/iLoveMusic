@@ -1,8 +1,9 @@
 #pragma once
 #include "Playlist_Struct.h"
-//#include "Update_Lagu.h"
-//#include "Log_Reg.h"
-
+#include "conio.h"
+#include "Update_Lagu.h"
+#include "Log_Reg.h"
+#include "playingmusic.h"
 
 namespace spotify {
 
@@ -14,6 +15,7 @@ namespace spotify {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 	using namespace System::IO;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Summary for MenuPlaylist
@@ -68,6 +70,8 @@ namespace spotify {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_judul;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clm_penyanyi;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ btn_play;
+	private: System::Windows::Forms::Button^ btn_stop;
 
 
 
@@ -106,6 +110,8 @@ namespace spotify {
 			this->clm_penyanyi = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->btn_search = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->btn_play = (gcnew System::Windows::Forms::Button());
+			this->btn_stop = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Tabel_Playlist))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -122,10 +128,10 @@ namespace spotify {
 			this->btn_tambah->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_tambah->ForeColor = System::Drawing::SystemColors::Control;
-			this->btn_tambah->Location = System::Drawing::Point(45, 77);
-			this->btn_tambah->Margin = System::Windows::Forms::Padding(2);
+			this->btn_tambah->Location = System::Drawing::Point(27, 87);
+			this->btn_tambah->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_tambah->Name = L"btn_tambah";
-			this->btn_tambah->Size = System::Drawing::Size(100, 24);
+			this->btn_tambah->Size = System::Drawing::Size(191, 49);
 			this->btn_tambah->TabIndex = 0;
 			this->btn_tambah->Text = L"Tambah Lagu";
 			this->btn_tambah->UseVisualStyleBackColor = false;
@@ -142,10 +148,10 @@ namespace spotify {
 			this->btn_update->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_update->ForeColor = System::Drawing::SystemColors::Control;
-			this->btn_update->Location = System::Drawing::Point(45, 131);
-			this->btn_update->Margin = System::Windows::Forms::Padding(2);
+			this->btn_update->Location = System::Drawing::Point(28, 153);
+			this->btn_update->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_update->Name = L"btn_update";
-			this->btn_update->Size = System::Drawing::Size(100, 37);
+			this->btn_update->Size = System::Drawing::Size(191, 46);
 			this->btn_update->TabIndex = 1;
 			this->btn_update->Text = L"Update Lagu";
 			this->btn_update->UseVisualStyleBackColor = false;
@@ -162,10 +168,10 @@ namespace spotify {
 			this->btn_delete->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_delete->ForeColor = System::Drawing::SystemColors::Control;
-			this->btn_delete->Location = System::Drawing::Point(45, 172);
-			this->btn_delete->Margin = System::Windows::Forms::Padding(2);
+			this->btn_delete->Location = System::Drawing::Point(15, 212);
+			this->btn_delete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_delete->Name = L"btn_delete";
-			this->btn_delete->Size = System::Drawing::Size(100, 43);
+			this->btn_delete->Size = System::Drawing::Size(216, 53);
 			this->btn_delete->TabIndex = 2;
 			this->btn_delete->Text = L"Delete Lagu";
 			this->btn_delete->UseVisualStyleBackColor = false;
@@ -177,11 +183,13 @@ namespace spotify {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->tb_searching->BackColor = System::Drawing::Color::Plum;
 			this->tb_searching->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->tb_searching->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->tb_searching->ForeColor = System::Drawing::Color::White;
-			this->tb_searching->Location = System::Drawing::Point(218, 29);
-			this->tb_searching->Margin = System::Windows::Forms::Padding(2);
+			this->tb_searching->Location = System::Drawing::Point(280, 31);
+			this->tb_searching->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->tb_searching->Name = L"tb_searching";
-			this->tb_searching->Size = System::Drawing::Size(375, 13);
+			this->tb_searching->Size = System::Drawing::Size(515, 23);
 			this->tb_searching->TabIndex = 4;
 			this->tb_searching->TextChanged += gcnew System::EventHandler(this, &MenuPlaylist::tb_searching_TextChanged);
 			// 
@@ -196,10 +204,10 @@ namespace spotify {
 			this->btn_shuffle->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_shuffle->ForeColor = System::Drawing::Color::White;
-			this->btn_shuffle->Location = System::Drawing::Point(45, 229);
-			this->btn_shuffle->Margin = System::Windows::Forms::Padding(2);
+			this->btn_shuffle->Location = System::Drawing::Point(15, 277);
+			this->btn_shuffle->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_shuffle->Name = L"btn_shuffle";
-			this->btn_shuffle->Size = System::Drawing::Size(100, 32);
+			this->btn_shuffle->Size = System::Drawing::Size(216, 53);
 			this->btn_shuffle->TabIndex = 6;
 			this->btn_shuffle->Text = L"Shuffle Lagu";
 			this->btn_shuffle->UseVisualStyleBackColor = false;
@@ -220,10 +228,10 @@ namespace spotify {
 			this->btn_download->Font = (gcnew System::Drawing::Font(L"Poppins", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_download->ForeColor = System::Drawing::Color::Transparent;
-			this->btn_download->Location = System::Drawing::Point(45, 284);
-			this->btn_download->Margin = System::Windows::Forms::Padding(2);
+			this->btn_download->Location = System::Drawing::Point(15, 342);
+			this->btn_download->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_download->Name = L"btn_download";
-			this->btn_download->Size = System::Drawing::Size(100, 24);
+			this->btn_download->Size = System::Drawing::Size(216, 49);
 			this->btn_download->TabIndex = 7;
 			this->btn_download->Text = L"Download Playlist";
 			this->btn_download->UseVisualStyleBackColor = false;
@@ -240,10 +248,10 @@ namespace spotify {
 			this->btn_logout->Font = (gcnew System::Drawing::Font(L"Poppins ExtraLight", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(77)));
 			this->btn_logout->ForeColor = System::Drawing::Color::White;
-			this->btn_logout->Location = System::Drawing::Point(20, 331);
-			this->btn_logout->Margin = System::Windows::Forms::Padding(2);
+			this->btn_logout->Location = System::Drawing::Point(27, 407);
+			this->btn_logout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_logout->Name = L"btn_logout";
-			this->btn_logout->Size = System::Drawing::Size(82, 24);
+			this->btn_logout->Size = System::Drawing::Size(109, 30);
 			this->btn_logout->TabIndex = 8;
 			this->btn_logout->Text = L"Logout";
 			this->btn_logout->UseVisualStyleBackColor = false;
@@ -259,13 +267,14 @@ namespace spotify {
 			this->Tabel_Playlist->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->Tabel_Playlist->BackgroundColor = System::Drawing::Color::Plum;
 			this->Tabel_Playlist->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->Tabel_Playlist->ColumnHeadersHeight = 29;
 			this->Tabel_Playlist->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->clm_id,
 					this->clm_judul, this->clm_penyanyi
 			});
 			this->Tabel_Playlist->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->Tabel_Playlist->Location = System::Drawing::Point(208, 60);
-			this->Tabel_Playlist->Margin = System::Windows::Forms::Padding(2);
+			this->Tabel_Playlist->Location = System::Drawing::Point(277, 74);
+			this->Tabel_Playlist->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Tabel_Playlist->Name = L"Tabel_Playlist";
 			this->Tabel_Playlist->ReadOnly = true;
 			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -283,7 +292,7 @@ namespace spotify {
 			this->Tabel_Playlist->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::Violet;
 			this->Tabel_Playlist->RowTemplate->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::White;
 			this->Tabel_Playlist->RowTemplate->Height = 24;
-			this->Tabel_Playlist->Size = System::Drawing::Size(444, 271);
+			this->Tabel_Playlist->Size = System::Drawing::Size(592, 303);
 			this->Tabel_Playlist->TabIndex = 9;
 			this->Tabel_Playlist->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellContentClick);
 			this->Tabel_Playlist->CellMouseClick += gcnew System::Windows::Forms::DataGridViewCellMouseEventHandler(this, &MenuPlaylist::Tabel_Playlist_CellMouseClick);
@@ -322,10 +331,10 @@ namespace spotify {
 			this->btn_search->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btn_search->ForeColor = System::Drawing::Color::Transparent;
 			this->btn_search->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btn_search.Image")));
-			this->btn_search->Location = System::Drawing::Point(612, 11);
-			this->btn_search->Margin = System::Windows::Forms::Padding(2);
+			this->btn_search->Location = System::Drawing::Point(816, 14);
+			this->btn_search->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btn_search->Name = L"btn_search";
-			this->btn_search->Size = System::Drawing::Size(40, 48);
+			this->btn_search->Size = System::Drawing::Size(53, 59);
 			this->btn_search->TabIndex = 10;
 			this->btn_search->UseVisualStyleBackColor = false;
 			this->btn_search->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_search_Click);
@@ -335,21 +344,62 @@ namespace spotify {
 			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox1->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(669, 11);
+			this->pictureBox1->Location = System::Drawing::Point(892, 14);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(23, 24);
+			this->pictureBox1->Size = System::Drawing::Size(31, 30);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 11;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MenuPlaylist::pictureBox1_Click);
 			// 
+			// btn_play
+			// 
+			this->btn_play->BackColor = System::Drawing::Color::Transparent;
+			this->btn_play->FlatAppearance->BorderSize = 0;
+			this->btn_play->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btn_play->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btn_play->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_play->Font = (gcnew System::Drawing::Font(L"Poppins", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_play->ForeColor = System::Drawing::Color::Transparent;
+			this->btn_play->Location = System::Drawing::Point(359, 384);
+			this->btn_play->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btn_play->Name = L"btn_play";
+			this->btn_play->Size = System::Drawing::Size(203, 55);
+			this->btn_play->TabIndex = 12;
+			this->btn_play->Text = L"Play";
+			this->btn_play->UseVisualStyleBackColor = false;
+			this->btn_play->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_play_Click);
+			// 
+			// btn_stop
+			// 
+			this->btn_stop->BackColor = System::Drawing::Color::Transparent;
+			this->btn_stop->FlatAppearance->BorderSize = 0;
+			this->btn_stop->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->btn_stop->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->btn_stop->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_stop->Font = (gcnew System::Drawing::Font(L"Poppins", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_stop->ForeColor = System::Drawing::SystemColors::Control;
+			this->btn_stop->Location = System::Drawing::Point(629, 386);
+			this->btn_stop->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btn_stop->Name = L"btn_stop";
+			this->btn_stop->Size = System::Drawing::Size(204, 52);
+			this->btn_stop->TabIndex = 13;
+			this->btn_stop->Text = L"Stop";
+			this->btn_stop->UseVisualStyleBackColor = false;
+			this->btn_stop->Click += gcnew System::EventHandler(this, &MenuPlaylist::btn_stop_Click);
+			// 
 			// MenuPlaylist
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(704, 366);
+			this->ClientSize = System::Drawing::Size(939, 450);
+			this->Controls->Add(this->btn_stop);
+			this->Controls->Add(this->btn_play);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btn_search);
 			this->Controls->Add(this->Tabel_Playlist);
@@ -362,7 +412,7 @@ namespace spotify {
 			this->Controls->Add(this->btn_tambah);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MenuPlaylist";
 			this->Text = L"iLoveMusic";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MenuPlaylist::MenuPlaylist_FormClosing);
@@ -380,9 +430,13 @@ namespace spotify {
 	public: bool logout = false;
 	private: int selected_id;
 	public: String^ selected_lagu;
-		  public: String^ selected_penyanyi;
+	public: String^ selected_penyanyi;
 	public: int ExitMenu = 0;
 	public: bool exitbtn = false;
+	public: bool playingmusic = false;
+	public: int random;
+		  public: bool rand_music = false;
+
 	private: List<Playlist^>^ menuplaylist = gcnew List<Playlist^>();
 
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -536,9 +590,15 @@ namespace spotify {
 	}
 	private: System::Void btn_shuffle_Click(System::Object^ sender, System::EventArgs^ e) {
 		Random^ rand = gcnew Random();
-		int random = rand->Next(menuplaylist->Count);
+		random = rand->Next(menuplaylist->Count);
 
-		MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
+		//MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
+		SoundPlayer^ player = gcnew SoundPlayer(menuplaylist[random]->judul + ".wav");
+		playingmusic = true;
+		rand_music = true;
+		Close();
+		player->Play();
+
 	}
 	private: System::Void MenuPlaylist_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
 		//ExitMenu = 1;
@@ -549,5 +609,22 @@ namespace spotify {
 		exitbtn = true;
 		Close();
 	}
+private: System::Void btn_play_Click(System::Object^ sender, System::EventArgs^ e) {
+	selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
+
+	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
+	playingmusic = true;
+	Close();
+	player->Play();
+
+}
+private: System::Void btn_stop_Click(System::Object^ sender, System::EventArgs^ e) {
+	selected_penyanyi = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
+
+	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
+	player->Stop();
+
+}
 };
 }
+
