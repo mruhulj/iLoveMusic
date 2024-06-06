@@ -16,6 +16,9 @@ namespace spotify {
 	using namespace System::Collections::Generic;
 	using namespace System::IO;
 	using namespace System::Media;
+	//using namespace AxWMPLib;
+	using namespace WMPLib;
+
 
 	/// <summary>
 	/// Summary for MenuPlaylist
@@ -45,6 +48,8 @@ namespace spotify {
 	private: System::Windows::Forms::Button^ btn_tambah;
 	private: System::Windows::Forms::Button^ btn_update;
 	private: System::Windows::Forms::Button^ btn_delete;
+	//private: WMPLib::IWMPCore^ wmp;
+	private: WMPLib::WindowsMediaPlayerClass^ wmp;
 
 	private: System::Windows::Forms::TextBox^ tb_searching;
 	protected:
@@ -599,6 +604,7 @@ namespace spotify {
 		random = rand->Next(menuplaylist->Count);
 
 		//MessageBox::Show(menuplaylist[random]->id + " " + menuplaylist[random]->judul + " " + menuplaylist[random]->penyayi, "Shuffle", MessageBoxButtons::OK);
+		//SoundPlayer^ shuffle = gcnew SoundPlayer(menuplaylist[random]->judul + ".wav");
 		SoundPlayer^ shuffle = gcnew SoundPlayer(menuplaylist[random]->judul + ".wav");
 		Shuffle_Lagu = menuplaylist[random]->judul;
 		Shuffle_Penyanyi = menuplaylist[random]->penyayi;
@@ -621,6 +627,11 @@ private: System::Void btn_play_Click(System::Object^ sender, System::EventArgs^ 
 	selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
 
 	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
+	//SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".mp3");
+
+	//WMPLib::WindowsMediaPlayerClass^ Wplayer = gcnew WMPLib::WindowsMediaPlayerClass();
+
+	//Wplayer->controls->play();
 
 	playingmusic = true;
 	Close();
@@ -631,6 +642,8 @@ private: System::Void btn_stop_Click(System::Object^ sender, System::EventArgs^ 
 	selected_lagu = Tabel_Playlist->CurrentRow->Cells[1]->Value->ToString();
 
 	SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".wav");
+	//SoundPlayer^ player = gcnew SoundPlayer(selected_lagu + ".mp3");
+
 	player->Stop();
 
 }
